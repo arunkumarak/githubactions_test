@@ -3,6 +3,10 @@ name: Build and Test webapplication to Azure Web App
 on:
   push:
     branches: ["main"]
+    
+env:
+  AZURE_WEBAPP_NAME: testgithubaction
+  WEBAPP_PACKAGE_PATH: "./publish"
 
 jobs:
   publish:
@@ -24,3 +28,10 @@ jobs:
 
       - name: Publish
         run: dotnet publish ./CurrentTimeService.sln --configuration Release --no-build
+        
+      - name: Deploy
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+          package: "${{ env.WEBAPP_PACKAGE_PATH }}"
