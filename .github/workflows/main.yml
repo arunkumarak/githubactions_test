@@ -17,5 +17,5 @@ jobs:
     - name: Build the Docker image
       run: |
         echo "${{secrets.DOCKER_PWD}}"| docker login -u "arunthegen" --password-stdin
-        docker image build -t arunthegen/pythonapp:latest .
-        docker push arunthegen/pythonapp:latest
+        docker image build -t arunthegen/webapp:latest .
+        docker push arunthegen/webapp:latest
