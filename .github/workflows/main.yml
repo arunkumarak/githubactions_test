@@ -27,11 +27,11 @@ jobs:
         run: dotnet build ./CurrentTimeService.sln --configuration Release --no-restore
 
       - name: Publish
-        run: dotnet publish ./CurrentTimeService.sln --configuration Release --no-build --property:PublishDir='${{ env.WEBAPP_PACKAGE_PATH }}/myapp' 
+        run: dotnet publish ./CurrentTimeService.sln --configuration Release --no-build --property:PublishDir='${{ env.WEBAPP_PACKAGE_PATH }}' 
         
       - name: Deploy
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-          package: "${{ env.WEBAPP_PACKAGE_PATH }}/myapp"
+          package: "${{ env.WEBAPP_PACKAGE_PATH }}"
