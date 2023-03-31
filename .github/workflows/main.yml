@@ -6,7 +6,7 @@ on:
     
 env:
   AZURE_WEBAPP_NAME: testgithubaction
-  WEBAPP_PACKAGE_PATH: "./publish"
+  WEBAPP_PACKAGE_PATH: "."
 
 jobs:
   publish:
